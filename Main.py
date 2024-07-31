@@ -173,7 +173,7 @@ async def search(ctx):
     if rate >= catch:
         await ctx.send(f"{name} was caught!\nCatch roll was {rate} and you needed only {catch} to catch")
             
-            #Add a flee % to decide if user gets another try niggatestcommit
+            #Add a flee % to decide if user gets another try
     else:
         await ctx.send(f"{name} escaped... It rolled a {catch} but you only had {rate}")
 
