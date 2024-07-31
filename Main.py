@@ -25,6 +25,10 @@ async def on_ready():
 async def ping(ctx):
     await ctx.send(f'The current ping is {round(client.latency * 1000)}ms!')
 
+@client.command()
+async def start(ctx):
+    await ctx.send("Start Command")
+
 @client.command(aliases= ["pd", "dex"])
 async def pokedex(ctx,*, pokemon):
     
