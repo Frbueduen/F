@@ -2,15 +2,21 @@
  "users": {
   "786083062172745770": {
    "Pokeballs": 90,
-   "Greatballs": 5
+   "Greatballs": 5,
+   "Ultraballs": 10,
+   "Masterballs": 10
   },
   "505213604023500810": {
    "Pokeballs": 997,
-   "Greatballs": 999
+   "Greatballs": 996,
+   "Ultraballs": 9,
+   "Masterballs": 9
   },
   "507494958278901761": {
    "Pokeballs": 13,
-   "Greatballs": 0
+   "Greatballs": 0,
+   "Ultraball": 10,
+   "Masterball": 10
   }
  }
 }

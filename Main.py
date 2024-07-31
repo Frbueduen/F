@@ -119,9 +119,11 @@ async def search(ctx):
             return
     pb = data["users"][str(ctx.author.id)]["Pokeballs"]
     gb = data["users"][str(ctx.author.id)]["Greatballs"]
+    ub = data["users"][str(ctx.author.id)]["Ultraballs"]
+    mb = data["users"][str(ctx.author.id)]["Masterballs"]
     
     SHembed = discord.Embed (title=f"{ctx.author.name} found {name}!",colour = colour)
-    SHembed.add_field(name="Select a ball to use", value=f"Number of Pokeballs:{pb}\nNumber of Greatballs:{gb}")
+    SHembed.add_field(name="Select a ball to use", value=f"Number of Pokeballs:{pb}\nNumber of Greatballs:{gb}\nNumber of Ultraballs:{ub}\nNumber of Masterballs:{mb}")
     SHembed.set_footer(text=f"Enter 'pb' or 'gb' to use a ball")
     SHembed.set_image(url=sprite_url)
     await ctx.send(embed=SHembed)
@@ -143,6 +145,8 @@ async def start(ctx):
             data["users"][str(ctx.author.id)] = {}
             data["users"][str(ctx.author.id)]["Pokeballs"] = 20
             data["users"][str(ctx.author.id)]["Greatballs"] = 0
+            data["users"][str(ctx.author.id)]["Ultraballs"] = 0
+            data["users"][str(ctx.author.id)]["Masterballs"] = 0
             file.seek(0)
             json.dump(data, file, indent = 1)
             await ctx.send(f"Your adventure has just begun. Trainer {ctx.author.name} has received 20 Pokeballs. Try `%s` to find a wild pokemon!")

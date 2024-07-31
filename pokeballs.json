@@ -1,7 +1,7 @@
 {
     "pokeballs_normal" :{
-        "Pokeball": 65,
-        "Greatball": 65,
+        "Pokeball": 60,
+        "Greatball": 70,
         "Ultraball": 80,
         "Masterball": 100},
     

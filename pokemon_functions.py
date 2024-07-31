@@ -132,6 +132,8 @@ async def search_cmd_handler(client, ctx, name):
 
     pokeballs = data["users"][str(ctx.author.id)]["Pokeballs"]
     greatballs = data["users"][str(ctx.author.id)]["Greatballs"]
+    ultraballs = data["users"][str(ctx.author.id)]["Ultraballs"]
+    masterballs = data["users"][str(ctx.author.id)]["Masterballs"]
 
     if pokeballs <= 0 and greatballs <= 0:
         await ctx.send(f"You don't have any Pokeballs! You could only watch as {name} fled.")
@@ -150,10 +152,7 @@ async def search_cmd_handler(client, ctx, name):
             await ctx.send(f"You took too long to throw a ball! {name} fled!")
             return code, catch_result, catch, rate
 
-        if msg.content.lower() not in ["pokeball", "pb", "greatball" , "gb"]:
-            await ctx.send("Enter a pokeball name to use it.")
-
-        elif msg.content.lower() in ["pokeball", "pb"]:
+        if msg.content.lower() in ["pokeball", "pb"]:
             if pokeballs <= 0:
                 await ctx.send("You don't have enough Pokeballs!")
                 continue
@@ -169,11 +168,32 @@ async def search_cmd_handler(client, ctx, name):
             rate = ball_data["pokeballs_normal"]["Greatball"]
             break
 
+        elif msg.content.lower() in ["ultraball", "ub"]:
+            if greatballs <= 0:
+                await ctx.send("You don't have enough Ultraballs!")
+                continue
+            ultraballs-=1
+            rate = ball_data["pokeballs_normal"]["Ultraball"]
+            break
+
+        elif msg.content.lower() in ["masterball", "mb"]:
+            if greatballs <= 0:
+                await ctx.send("You don't have enough Masterballs!")
+                continue
+            masterballs-=1
+            rate = ball_data["pokeballs_normal"]["Masterball"]
+            break
+
+        else:
+            await ctx.send("Enter a pokeball name to use it.")
+
     catch = randint(0,100)
     file.seek(0)
 
     data["users"][str(ctx.author.id)]["Pokeballs"] = pokeballs
     data["users"][str(ctx.author.id)]["Greatballs"] = greatballs
+    data["users"][str(ctx.author.id)]["Ultraballs"] = ultraballs
+    data["users"][str(ctx.author.id)]["Masterballs"] = masterballs
     if rate >= catch:
         catch_result = True
         json.dump(data, file, indent = 1)
