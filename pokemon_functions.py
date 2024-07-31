@@ -1,5 +1,7 @@
 import json
 import random
+from random import randint
+import asyncio
 
 def initialize_wild_pool():
     with open('all_pokemon_data.json', 'r') as file:
@@ -117,3 +119,72 @@ def choose_random_wild(normal_ID_list, mythical_ID_list, legendary_ID_list):
     pokemon = search_pokemon_by_id(chosen_id)
 
     return pokemon, shiny
+
+async def search_cmd_handler(client, ctx, name):
+
+    code = 0 #this code tells if the function worked, 0 is false 1 is true (used for timeout)
+    rate = None
+    catch_result = None
+    catch = None
+     
+    file = open("inventory.json", "r+") #first open the file just once to find out how many balls the user has
+    data = json.load(file)
+
+    pokeballs = data["users"][str(ctx.author.id)]["Pokeballs"]
+    greatballs = data["users"][str(ctx.author.id)]["Greatballs"]
+
+    if pokeballs <= 0 and greatballs <= 0:
+        await ctx.send(f"You don't have any Pokeballs! You could only watch as {name} fled.")
+        return code, catch_result, catch, rate
+
+    ball_file = open("pokeballs.json","r")
+    ball_data = json.load(ball_file)
+
+    while True:
+        def check(msg):
+            return msg.author == ctx.author and msg.channel == ctx.channel and msg.content
+        
+        try:
+            msg = await client.wait_for("message", check=check, timeout=60.0)
+        except asyncio.TimeoutError:
+            await ctx.send(f"You took too long to throw a ball! {name} fled!")
+            return code, catch_result, catch, rate
+
+        if msg.content.lower() not in ["pokeball", "pb", "greatball" , "gb"]:
+            await ctx.send("Enter a pokeball name to use it.")
+
+        elif msg.content.lower() in ["pokeball", "pb"]:
+            if pokeballs <= 0:
+                await ctx.send("You don't have enough Pokeballs!")
+                continue
+            pokeballs-=1
+            rate = ball_data["pokeballs_normal"]["Pokeball"]
+            break
+
+        elif msg.content.lower() in ["greatball", "gb"]:
+            if greatballs <= 0:
+                await ctx.send("You don't have enough Greatballs!")
+                continue
+            greatballs-=1
+            rate = ball_data["pokeballs_normal"]["Greatball"]
+            break
+
+    catch = randint(0,100)
+    file.seek(0)
+
+    data["users"][str(ctx.author.id)]["Pokeballs"] = pokeballs
+    data["users"][str(ctx.author.id)]["Greatballs"] = greatballs
+    if rate >= catch:
+        catch_result = True
+        json.dump(data, file, indent = 1)
+        code = 1
+        #Add a flee % to decide if user gets another try
+    else:
+        catch_result = False
+        json.dump(data, file, indent = 1)
+        code = 1
+
+    file.truncate()
+    file.close()
+    ball_file.close()
+    return code, catch_result, catch, rate

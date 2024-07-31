@@ -25,10 +25,6 @@ async def on_ready():
 async def ping(ctx):
     await ctx.send(f'The current ping is {round(client.latency * 1000)}ms!')
 
-@client.command()
-async def start(ctx):
-    await ctx.send("Start Command")
-
 @client.command(aliases= ["pd", "dex"])
 async def pokedex(ctx,*, pokemon):
     
@@ -118,73 +114,50 @@ async def search(ctx):
     
     with open("Inventory.json", "r") as file:
         data = json.load(file)
+        if str(ctx.author.id) not in data["users"]:
+            await ctx.send("You have not begun your adventure! Start by using the `%start` command.")
+            return
     pb = data["users"][str(ctx.author.id)]["Pokeballs"]
     gb = data["users"][str(ctx.author.id)]["Greatballs"]
     
-    SHembed = discord.Embed (title=f"{name}",colour = colour)
+    SHembed = discord.Embed (title=f"{ctx.author.name} found {name}!",colour = colour)
     SHembed.add_field(name="Select a ball to use", value=f"Number of Pokeballs:{pb}\nNumber of Greatballs:{gb}")
-    SHembed.set_footer(text=f"Pokedex Entry retrieval by {ctx.author}")
+    SHembed.set_footer(text=f"Enter 'pb' or 'gb' to use a ball")
     SHembed.set_image(url=sprite_url)
     await ctx.send(embed=SHembed)
-
-    while True:
-        def check(msg):
-            return msg.author == ctx.author and msg.channel == ctx.channel and msg.content
-        msg = await client.wait_for("message", check=check, timeout=60.0)
-
-        if msg.content.lower() not in ["pokeball", "pb", "greatball" , "gb"]:
-            await ctx.send("IDK what ball that is...")
-            break 
-
-        elif msg.content.lower() in ["pokeball", "pb"]:
-            with open("inventory.json", "r") as file2:
-                data2 = json.load(file2)
-                pokeballs = data2["users"][str(ctx.author.id)]["Pokeballs"]
-                greatballs = data2["users"][str(ctx.author.id)]["Greatballs"]
-            data2["users"][str(ctx.author.id)] = {}
-            data2["users"][str(ctx.author.id)]["Pokeballs"] = pokeballs - 1
-            data2["users"][str(ctx.author.id)]["Greatballs"] = greatballs
-            with open("inventory.json", "w") as file3:
-                json.dump(data2, file3, indent = 1)
-
-            with open("pokeballs.json","r") as balls:
-                ball = json.load(balls)
-            rate = ball["pokeballs_normal"]["Pokeball"]
-            break
-
-        elif msg.content.lower() in ["greatball", "gb"]:
-            with open("inventory.json", "r") as file2:
-                data2 = json.load(file2)
-                pokeballs = data2["users"][str(ctx.author.id)]["Pokeballs"] 
-                greatballs = data2["users"][str(ctx.author.id)]["Greatballs"]
-            data2["users"][str(ctx.author.id)] = {}
-            data2["users"][str(ctx.author.id)]["Pokeballs"] = pokeballs
-            data2["users"][str(ctx.author.id)]["Greatballs"] = greatballs - 1
-            with open("inventory.json", "w") as file3:
-                json.dump(data2, file3, indent = 1)
-
-            with open("pokeballs.json","r") as balls:
-                ball = json.load(balls)
-            rate = ball["pokeballs_normal"]["Greatball"]
-            break
+    
+    code, catch_result, catch, rate = await search_cmd_handler(client, ctx, name) #can consider removing catch and rate, only there for testing purposes
             
-            
-    catch = randint(0,100)
-    if rate >= catch:
+    if code == 0:
+        print("timed out")
+    elif catch_result:
         await ctx.send(f"{name} was caught!\nCatch roll was {rate} and you needed only {catch} to catch")
-            
-            #Add a flee % to decide if user gets another try
     else:
         await ctx.send(f"{name} escaped... It rolled a {catch} but you only had {rate}")
+
+@client.command()
+async def start(ctx):
+    with open('Inventory.json', 'r+') as file:
+        data = json.load(file)
+        if str(ctx.author.id) not in data["users"]:
+            data["users"][str(ctx.author.id)] = {}
+            data["users"][str(ctx.author.id)]["Pokeballs"] = 20
+            data["users"][str(ctx.author.id)]["Greatballs"] = 0
+            file.seek(0)
+            json.dump(data, file, indent = 1)
+            await ctx.send(f"Your adventure has just begun. Trainer {ctx.author.name} has received 20 Pokeballs. Try `%s` to find a wild pokemon!")
+        else:
+            await ctx.send("You have already begun your adventure! Start searching for wild pokemon using `%s`")
+        
+
 
 @search.error
 async def search(ctx,error):
   if isinstance(error, commands.CommandOnCooldown):
     retry_secs = error.retry_after
-    await ctx.send (f"Please retry in {str(round(retry_secs))}seconds.")
+    await ctx.send (f"Please retry in {str(round(retry_secs))} seconds.")
   else:
     raise error
         
-
 
 client.run(os.getenv('API_Key'))

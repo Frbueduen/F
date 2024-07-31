@@ -1,12 +1,16 @@
 {
  "users": {
   "786083062172745770": {
-   "Pokeballs": 81,
-   "Greatballs": 9
+   "Pokeballs": 90,
+   "Greatballs": 5
   },
   "505213604023500810": {
-   "Pokeballs": 100,
-   "Greatballs": 20
+   "Pokeballs": 997,
+   "Greatballs": 999
+  },
+  "507494958278901761": {
+   "Pokeballs": 13,
+   "Greatballs": 0
   }
  }
 }
