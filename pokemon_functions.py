@@ -136,8 +136,9 @@ async def search_cmd_handler(client, ctx, name):
      
     file = open("inventory.json", "r+") #first open the file just once to find out how many balls the user has
     data = json.load(file)
+    file.seek(0)
 
-    pokedollars = data["users"][str(ctx.author.id)]["Pokeballs"]
+    pokedollars = data["users"][str(ctx.author.id)]["Pokedollars"]
     pokeballs = data["users"][str(ctx.author.id)]["Pokeballs"]
     greatballs = data["users"][str(ctx.author.id)]["Greatballs"]
     ultraballs = data["users"][str(ctx.author.id)]["Ultraballs"]
@@ -150,7 +151,9 @@ async def search_cmd_handler(client, ctx, name):
     ball_file = open("pokeballs.json","r")
     ball_data = json.load(ball_file)
 
-    earnings = random.randint(50,150)
+    catch = randint(0,100)
+    earnings = randint(50,150)
+    flee_chance = 10
 
     while True:
         def check(msg):
@@ -168,8 +171,7 @@ async def search_cmd_handler(client, ctx, name):
                 continue
             pokeballs-=1
             rate = ball_data["pokeballs_normal"]["Pokeball"]
-            pokedollars += earnings
-            break
+            print("breakpoint 2")
 
         elif msg.content.lower() in ["greatball", "gb"]:
             if greatballs <= 0:
@@ -177,8 +179,6 @@ async def search_cmd_handler(client, ctx, name):
                 continue
             greatballs-=1
             rate = ball_data["pokeballs_normal"]["Greatball"]
-            pokedollars += earnings
-            break
 
         elif msg.content.lower() in ["ultraball", "ub"]:
             if ultraballs <= 0:
@@ -186,8 +186,6 @@ async def search_cmd_handler(client, ctx, name):
                 continue
             ultraballs-=1
             rate = ball_data["pokeballs_normal"]["Ultraball"]
-            pokedollars += earnings
-            break
 
         elif msg.content.lower() in ["masterball", "mb"]:
             if masterballs <= 0:
@@ -195,29 +193,44 @@ async def search_cmd_handler(client, ctx, name):
                 continue
             masterballs-=1
             rate = ball_data["pokeballs_normal"]["Masterball"]
-            pokedollars += earnings
-            break
+
+        elif msg.content.lower() in ["run"]:
+            await ctx.send(f"You got away from {name} safely.")
+            code = 1
+            file.seek(0)
+            json.dump(data, file, indent = 1)
+            file.close()
+            ball_file.close()
+            catch_result = "ran"
+            return code, catch_result, catch, rate, earnings
 
         else:
             await ctx.send("Enter a pokeball name to use it.")
 
-    catch = randint(0,100)
-    file.seek(0)
+        data["users"][str(ctx.author.id)]["Pokeballs"] = pokeballs
+        data["users"][str(ctx.author.id)]["Greatballs"] = greatballs
+        data["users"][str(ctx.author.id)]["Ultraballs"] = ultraballs
+        data["users"][str(ctx.author.id)]["Masterballs"] = masterballs
+        if rate >= catch:
+            print("caught")
+            catch_result = True
+            data["users"][str(ctx.author.id)]["Pokedollars"] = pokedollars+earnings
+            json.dump(data, file, indent = 1)
+            code = 1
+            break
+            #Add a flee % to decide if user gets another try
+        elif random.randint(1, 100) <= flee_chance:
+            print("escaped")
+            await ctx.send(f"{name} fled!")
+            catch_result = False
+            json.dump(data, file, indent = 1)
+            code = 1
+            break
+        else:
+            await ctx.send(f"{name} broke free! Try again!")
 
-    data["users"][str(ctx.author.id)]["Pokedollars"] = pokedollars
-    data["users"][str(ctx.author.id)]["Pokeballs"] = pokeballs
-    data["users"][str(ctx.author.id)]["Greatballs"] = greatballs
-    data["users"][str(ctx.author.id)]["Ultraballs"] = ultraballs
-    data["users"][str(ctx.author.id)]["Masterballs"] = masterballs
-    if rate >= catch:
-        catch_result = True
-        json.dump(data, file, indent = 1)
-        code = 1
-        #Add a flee % to decide if user gets another try
-    else:
-        catch_result = False
-        json.dump(data, file, indent = 1)
-        code = 1
+    file.seek(0)
+    json.dump(data, file, indent=1)
 
     file.truncate()
     file.close()

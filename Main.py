@@ -145,7 +145,7 @@ async def search(ctx):
     
     SHembed = discord.Embed (title=f"{ctx.author.name} found a Lvl {level} {name} !",colour = colour)
     SHembed.add_field(name="Select a ball to use", value=f"Number of Pokeballs:{pb}\nNumber of Greatballs:{gb}\nNumber of Ultraballs:{ub}\nNumber of Masterballs:{mb}")
-    SHembed.set_footer(text=f"Enter 'pb' or 'gb' to use a ball")
+    SHembed.set_footer(text=f"Enter a Pokeball name to use it")
     SHembed.set_image(url=sprite_url)
     await ctx.send(embed=SHembed)
     
@@ -153,6 +153,8 @@ async def search(ctx):
             
     if code == 0:
         print("timed out")
+    elif catch_result == "ran":
+        return
     elif catch_result:
         await ctx.send(f"{name} was caught!\nCatch roll was {rate} and you needed only {catch} to catch\nYou earned {earnings} Pokedollars")
         store_caught_pokemon(results, str(ctx.author.id), shiny, level)
