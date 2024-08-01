@@ -1,0 +1,64 @@
+{
+ "e61043a4-198f-4587-a2b4-4e90dd92ecff": {
+  "unique_id": "e61043a4-198f-4587-a2b4-4e90dd92ecff",
+  "pokedex_id": 386,
+  "name": "deoxys-normal",
+  "shiny": false,
+  "level": 10,
+  "ivs": {
+   "hp": 15,
+   "attack": 23,
+   "defense": 27,
+   "special-attack": 5,
+   "special-defense": 16,
+   "speed": 27
+  },
+  "base_stats": {
+   "hp": 50,
+   "attack": 150,
+   "defense": 50,
+   "special-attack": 150,
+   "special-defense": 50,
+   "speed": 150
+  },
+  "final_stats": {
+   "hp": 16,
+   "attack": 37,
+   "defense": 17,
+   "special-attack": 35,
+   "special-defense": 16,
+   "speed": 37
+  }
+ },
+ "4b16e5f7-912b-4c47-ba5a-34df08ab1d5c": {
+  "unique_id": "4b16e5f7-912b-4c47-ba5a-34df08ab1d5c",
+  "pokedex_id": 896,
+  "name": "glastrier",
+  "shiny": false,
+  "level": 4,
+  "ivs": {
+   "hp": 21,
+   "attack": 17,
+   "defense": 11,
+   "special-attack": 21,
+   "special-defense": 21,
+   "speed": 4
+  },
+  "base_stats": {
+   "hp": 100,
+   "attack": 145,
+   "defense": 130,
+   "special-attack": 65,
+   "special-defense": 110,
+   "speed": 30
+  },
+  "final_stats": {
+   "hp": 13,
+   "attack": 17,
+   "defense": 15,
+   "special-attack": 11,
+   "special-defense": 14,
+   "speed": 7
+  }
+ }
+}

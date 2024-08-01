@@ -6,6 +6,7 @@ from dotenv import load_dotenv
 from discord.ext import commands
 from move_functions import *
 from pokemon_functions import *
+from pokemon_stat_generation import *
 
 load_dotenv()
 
@@ -102,6 +103,8 @@ async def move(ctx, *,move_name):
 async def search(ctx):
     results, shiny = choose_random_wild(normal_ID_list, mythical_ID_list, legendary_ID_list)
 
+    level = random.randint(3,20)
+
     type = ", ".join([t.capitalize() for t in results["types"]])
     colour = get_type_colour(type.split(','))
     name = results["name"].capitalize().replace('-', ' ')
@@ -122,7 +125,7 @@ async def search(ctx):
     ub = data["users"][str(ctx.author.id)]["Ultraballs"]
     mb = data["users"][str(ctx.author.id)]["Masterballs"]
     
-    SHembed = discord.Embed (title=f"{ctx.author.name} found {name}!",colour = colour)
+    SHembed = discord.Embed (title=f"{ctx.author.name} found a Lvl {level} {name}!",colour = colour)
     SHembed.add_field(name="Select a ball to use", value=f"Number of Pokeballs:{pb}\nNumber of Greatballs:{gb}\nNumber of Ultraballs:{ub}\nNumber of Masterballs:{mb}")
     SHembed.set_footer(text=f"Enter 'pb' or 'gb' to use a ball")
     SHembed.set_image(url=sprite_url)
@@ -134,6 +137,7 @@ async def search(ctx):
         print("timed out")
     elif catch_result:
         await ctx.send(f"{name} was caught!\nCatch roll was {rate} and you needed only {catch} to catch")
+        store_caught_pokemon(results, str(ctx.author.id), shiny, level)
     else:
         await ctx.send(f"{name} escaped... It rolled a {catch} but you only had {rate}")
 

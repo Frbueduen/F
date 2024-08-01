@@ -135,7 +135,7 @@ async def search_cmd_handler(client, ctx, name):
     ultraballs = data["users"][str(ctx.author.id)]["Ultraballs"]
     masterballs = data["users"][str(ctx.author.id)]["Masterballs"]
 
-    if pokeballs <= 0 and greatballs <= 0:
+    if pokeballs <= 0 and greatballs <= 0 and ultraballs <= 0 and masterballs <= 0:
         await ctx.send(f"You don't have any Pokeballs! You could only watch as {name} fled.")
         return code, catch_result, catch, rate
 
@@ -169,7 +169,7 @@ async def search_cmd_handler(client, ctx, name):
             break
 
         elif msg.content.lower() in ["ultraball", "ub"]:
-            if greatballs <= 0:
+            if ultraballs <= 0:
                 await ctx.send("You don't have enough Ultraballs!")
                 continue
             ultraballs-=1
@@ -177,7 +177,7 @@ async def search_cmd_handler(client, ctx, name):
             break
 
         elif msg.content.lower() in ["masterball", "mb"]:
-            if greatballs <= 0:
+            if masterballs <= 0:
                 await ctx.send("You don't have enough Masterballs!")
                 continue
             masterballs-=1

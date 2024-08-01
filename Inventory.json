@@ -1,22 +1,28 @@
 {
  "users": {
   "786083062172745770": {
-   "Pokeballs": 90,
-   "Greatballs": 5,
+   "Pokeballs": 12,
+   "Greatballs": 0,
    "Ultraballs": 10,
-   "Masterballs": 10
+   "Masterballs": 10,
+   "caught_pokemon": [
+    "e61043a4-198f-4587-a2b4-4e90dd92ecff"
+   ]
   },
   "505213604023500810": {
-   "Pokeballs": 997,
-   "Greatballs": 996,
-   "Ultraballs": 9,
-   "Masterballs": 9
+   "Pokeballs": 10,
+   "Greatballs": 0,
+   "Ultraballs": 10,
+   "Masterballs": 9,
+   "caught_pokemon": [
+    "4b16e5f7-912b-4c47-ba5a-34df08ab1d5c"
+   ]
   },
   "507494958278901761": {
    "Pokeballs": 13,
    "Greatballs": 0,
-   "Ultraball": 10,
-   "Masterball": 10
+   "Ultraballs": 10,
+   "Masterballs": 10
   }
  }
 }
