@@ -151,6 +151,7 @@ async def start(ctx):
             data["users"][str(ctx.author.id)]["Greatballs"] = 0
             data["users"][str(ctx.author.id)]["Ultraballs"] = 0
             data["users"][str(ctx.author.id)]["Masterballs"] = 0
+            data["users"][str(ctx.author.id)]["caught_pokemon"] = []            
             file.seek(0)
             json.dump(data, file, indent = 1)
             await ctx.send(f"Your adventure has just begun. Trainer {ctx.author.name} has received 20 Pokeballs. Try `%s` to find a wild pokemon!")
