@@ -37,6 +37,12 @@ def search_pokemon_by_id(pokemon):
     results = dict.get(pokemon, None)
     return results
 
+def search_pokemon_by_unique_id(id):
+    with open('caught_pokemon_data.json', 'r') as file:
+        pokemon_data = json.load(file)
+        results = pokemon_data[id]
+    return results
+
 def get_next_evolution(evolution_line, current_pokemon):
     if not evolution_line:
         return "-"

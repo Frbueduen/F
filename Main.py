@@ -26,6 +26,23 @@ async def on_ready():
 async def ping(ctx):
     await ctx.send(f'The current ping is {round(client.latency * 1000)}ms!')
 
+@client.command()
+async def start(ctx):
+    with open('Inventory.json', 'r+') as file:
+        data = json.load(file)
+        if str(ctx.author.id) not in data["users"]:
+            data["users"][str(ctx.author.id)] = {}
+            data["users"][str(ctx.author.id)]["Pokeballs"] = 20
+            data["users"][str(ctx.author.id)]["Greatballs"] = 0
+            data["users"][str(ctx.author.id)]["Ultraballs"] = 0
+            data["users"][str(ctx.author.id)]["Masterballs"] = 0
+            data["users"][str(ctx.author.id)]["caught_pokemon"] = []            
+            file.seek(0)
+            json.dump(data, file, indent = 1)
+            await ctx.send(f"Your adventure has just begun. Trainer {ctx.author.name} has received 20 Pokeballs. Try `%s` to find a wild pokemon!")
+        else:
+            await ctx.send("You have already begun your adventure! Start searching for wild pokemon using `%s`")
+
 @client.command(aliases= ["pd", "dex"])
 async def pokedex(ctx,*, pokemon):
     
@@ -112,7 +129,7 @@ async def search(ctx):
         sprite_url = results["sprites"]["front_default"]
     else:
         sprite_url = results["sprites"]["front_shiny"]
-        name = f"Shiny {name}"
+        name = f"{name}:star2:"
         colour = 0x000000
     
     with open("Inventory.json", "r") as file:
@@ -125,7 +142,7 @@ async def search(ctx):
     ub = data["users"][str(ctx.author.id)]["Ultraballs"]
     mb = data["users"][str(ctx.author.id)]["Masterballs"]
     
-    SHembed = discord.Embed (title=f"{ctx.author.name} found a Lvl {level} {name}!",colour = colour)
+    SHembed = discord.Embed (title=f"{ctx.author.name} found a Lvl {level} {name} !",colour = colour)
     SHembed.add_field(name="Select a ball to use", value=f"Number of Pokeballs:{pb}\nNumber of Greatballs:{gb}\nNumber of Ultraballs:{ub}\nNumber of Masterballs:{mb}")
     SHembed.set_footer(text=f"Enter 'pb' or 'gb' to use a ball")
     SHembed.set_image(url=sprite_url)
@@ -140,25 +157,33 @@ async def search(ctx):
         store_caught_pokemon(results, str(ctx.author.id), shiny, level)
     else:
         await ctx.send(f"{name} escaped... It rolled a {catch} but you only had {rate}")
-
-@client.command()
-async def start(ctx):
-    with open('Inventory.json', 'r+') as file:
-        data = json.load(file)
-        if str(ctx.author.id) not in data["users"]:
-            data["users"][str(ctx.author.id)] = {}
-            data["users"][str(ctx.author.id)]["Pokeballs"] = 20
-            data["users"][str(ctx.author.id)]["Greatballs"] = 0
-            data["users"][str(ctx.author.id)]["Ultraballs"] = 0
-            data["users"][str(ctx.author.id)]["Masterballs"] = 0
-            data["users"][str(ctx.author.id)]["caught_pokemon"] = []            
-            file.seek(0)
-            json.dump(data, file, indent = 1)
-            await ctx.send(f"Your adventure has just begun. Trainer {ctx.author.name} has received 20 Pokeballs. Try `%s` to find a wild pokemon!")
-        else:
-            await ctx.send("You have already begun your adventure! Start searching for wild pokemon using `%s`")
         
+@client.command()
+async def box(ctx):
+    with open("Inventory.json", "r") as file:
+        data = json.load(file)
 
+        if str(ctx.author.id) not in data["users"]:
+            await ctx.send("You have not begun your adventure! Start by using the `%start` command.")
+            return
+
+        elif data["users"][str(ctx.author.id)]["caught_pokemon"] == []:
+            await ctx.send("You have not caught any pokemon! Try using the `%s` command")
+            return
+        
+        caught_id_list = data["users"][str(ctx.author.id)]["caught_pokemon"]
+
+        BXembed = discord.Embed (title=f"{ctx.author.name}'s Pokemon Box") #add color idk what
+        
+        for pokemon_id in caught_id_list:
+            pokemon = search_pokemon_by_unique_id(str(pokemon_id))
+            name = pokemon["name"].capitalize().replace('-', ' ')
+            shiny = pokemon["shiny"]
+            if shiny:
+                name = f"{name}:star2:"
+            BXembed.add_field(name=f"{name}", value="description")
+
+        await ctx.send(embed=BXembed)
 
 @search.error
 async def search(ctx,error):
