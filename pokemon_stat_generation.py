@@ -1,12 +1,32 @@
 import json
 import random
-import uuid
+import os
 
 def generate_iv():
     return random.randint(0, 31)
 
 def calculate_stat(base, iv, level, ev=0, nature=1):
     return int((((2 * base + iv + (ev // 4)) * level) // 100 + 5) * nature) #got this calculation from chatgpt dont ask me what this is
+
+def generate_unique_id():
+    # Path to the file storing the last used ID
+    last_id_file = "last_unique_id.txt"
+    
+    # Read the last used ID
+    if os.path.exists(last_id_file):
+        with open(last_id_file, "r") as file:
+            last_id = int(file.read().strip())
+    else:
+        last_id = 0
+
+    # Increment the last used ID
+    new_id = last_id + 1
+
+    # Update the last used ID in the file
+    with open(last_id_file, "w") as file:
+        file.write(str(new_id).zfill(6))  # Ensure the ID is zero-padded to 6 digits
+
+    return str(new_id).zfill(6)  # Return the new ID as a zero-padded string
 
 def store_caught_pokemon(pokemon_data, user_id, shiny, level):
     ivs = {
@@ -17,7 +37,8 @@ def store_caught_pokemon(pokemon_data, user_id, shiny, level):
         "special-defense": generate_iv(),
         "speed": generate_iv()
     }
-    unique_id = str(uuid.uuid4())
+
+    unique_id = generate_unique_id()
 
     caught_pokemon = {
         "unique_id" : unique_id,
