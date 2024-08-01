@@ -132,10 +132,12 @@ async def search_cmd_handler(client, ctx, name):
     rate = None
     catch_result = None
     catch = None
+    earnings = None
      
     file = open("inventory.json", "r+") #first open the file just once to find out how many balls the user has
     data = json.load(file)
 
+    pokedollars = data["users"][str(ctx.author.id)]["Pokeballs"]
     pokeballs = data["users"][str(ctx.author.id)]["Pokeballs"]
     greatballs = data["users"][str(ctx.author.id)]["Greatballs"]
     ultraballs = data["users"][str(ctx.author.id)]["Ultraballs"]
@@ -143,10 +145,12 @@ async def search_cmd_handler(client, ctx, name):
 
     if pokeballs <= 0 and greatballs <= 0 and ultraballs <= 0 and masterballs <= 0:
         await ctx.send(f"You don't have any Pokeballs! You could only watch as {name} fled.")
-        return code, catch_result, catch, rate
+        return code, catch_result, catch, rate, earnings
 
     ball_file = open("pokeballs.json","r")
     ball_data = json.load(ball_file)
+
+    earnings = random.randint(50,150)
 
     while True:
         def check(msg):
@@ -156,7 +160,7 @@ async def search_cmd_handler(client, ctx, name):
             msg = await client.wait_for("message", check=check, timeout=60.0)
         except asyncio.TimeoutError:
             await ctx.send(f"You took too long to throw a ball! {name} fled!")
-            return code, catch_result, catch, rate
+            return code, catch_result, catch, rate, earnings
 
         if msg.content.lower() in ["pokeball", "pb"]:
             if pokeballs <= 0:
@@ -164,6 +168,7 @@ async def search_cmd_handler(client, ctx, name):
                 continue
             pokeballs-=1
             rate = ball_data["pokeballs_normal"]["Pokeball"]
+            pokedollars += earnings
             break
 
         elif msg.content.lower() in ["greatball", "gb"]:
@@ -172,6 +177,7 @@ async def search_cmd_handler(client, ctx, name):
                 continue
             greatballs-=1
             rate = ball_data["pokeballs_normal"]["Greatball"]
+            pokedollars += earnings
             break
 
         elif msg.content.lower() in ["ultraball", "ub"]:
@@ -180,6 +186,7 @@ async def search_cmd_handler(client, ctx, name):
                 continue
             ultraballs-=1
             rate = ball_data["pokeballs_normal"]["Ultraball"]
+            pokedollars += earnings
             break
 
         elif msg.content.lower() in ["masterball", "mb"]:
@@ -188,6 +195,7 @@ async def search_cmd_handler(client, ctx, name):
                 continue
             masterballs-=1
             rate = ball_data["pokeballs_normal"]["Masterball"]
+            pokedollars += earnings
             break
 
         else:
@@ -196,6 +204,7 @@ async def search_cmd_handler(client, ctx, name):
     catch = randint(0,100)
     file.seek(0)
 
+    data["users"][str(ctx.author.id)]["Pokedollars"] = pokedollars
     data["users"][str(ctx.author.id)]["Pokeballs"] = pokeballs
     data["users"][str(ctx.author.id)]["Greatballs"] = greatballs
     data["users"][str(ctx.author.id)]["Ultraballs"] = ultraballs
@@ -213,4 +222,4 @@ async def search_cmd_handler(client, ctx, name):
     file.truncate()
     file.close()
     ball_file.close()
-    return code, catch_result, catch, rate
+    return code, catch_result, catch, rate, earnings

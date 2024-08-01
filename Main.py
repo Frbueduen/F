@@ -36,10 +36,11 @@ async def start(ctx):
             data["users"][str(ctx.author.id)]["Greatballs"] = 0
             data["users"][str(ctx.author.id)]["Ultraballs"] = 0
             data["users"][str(ctx.author.id)]["Masterballs"] = 0
+            data["users"][str(ctx.author.id)]["Pokedollars"] = 10000
             data["users"][str(ctx.author.id)]["caught_pokemon"] = []            
             file.seek(0)
             json.dump(data, file, indent = 1)
-            await ctx.send(f"Your adventure has just begun. Trainer {ctx.author.name} has received 20 Pokeballs and 100 Pokedollars. Use `%s` to find a wild pokemon!")
+            await ctx.send(f"Your adventure has just begun. Trainer {ctx.author.name} has received 20 Pokeballs and 1000 Pokedollars. Use `%s` to find a wild pokemon!")
         else:
             await ctx.send("You have already begun your adventure! Start searching for wild pokemon using `%s`")
 
@@ -148,12 +149,12 @@ async def search(ctx):
     SHembed.set_image(url=sprite_url)
     await ctx.send(embed=SHembed)
     
-    code, catch_result, catch, rate = await search_cmd_handler(client, ctx, name) #can consider removing catch and rate, only there for testing purposes
+    code, catch_result, catch, rate, earnings = await search_cmd_handler(client, ctx, name) #can consider removing catch and rate, only there for testing purposes
             
     if code == 0:
         print("timed out")
     elif catch_result:
-        await ctx.send(f"{name} was caught!\nCatch roll was {rate} and you needed only {catch} to catch")
+        await ctx.send(f"{name} was caught!\nCatch roll was {rate} and you needed only {catch} to catch\nYou earned {earnings} Pokedollars")
         store_caught_pokemon(results, str(ctx.author.id), shiny, level)
     else:
         await ctx.send(f"{name} escaped... It rolled a {catch} but you only had {rate}")

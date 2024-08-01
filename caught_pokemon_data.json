@@ -618,5 +618,191 @@
    "special-defense": 27,
    "speed": 15
   }
+ },
+ "000021": {
+  "unique_id": "000021",
+  "pokedex_id": 843,
+  "name": "silicobra",
+  "shiny": false,
+  "level": 6,
+  "ivs": {
+   "hp": 29,
+   "attack": 9,
+   "defense": 27,
+   "special-attack": 7,
+   "special-defense": 6,
+   "speed": 29
+  },
+  "base_stats": {
+   "hp": 52,
+   "attack": 57,
+   "defense": 75,
+   "special-attack": 35,
+   "special-defense": 50,
+   "speed": 46
+  },
+  "final_stats": {
+   "hp": 12,
+   "attack": 12,
+   "defense": 15,
+   "special-attack": 9,
+   "special-defense": 11,
+   "speed": 12
+  }
+ },
+ "000022": {
+  "unique_id": "000022",
+  "pokedex_id": 443,
+  "name": "gible",
+  "shiny": false,
+  "level": 7,
+  "ivs": {
+   "hp": 24,
+   "attack": 25,
+   "defense": 2,
+   "special-attack": 13,
+   "special-defense": 22,
+   "speed": 16
+  },
+  "base_stats": {
+   "hp": 58,
+   "attack": 70,
+   "defense": 45,
+   "special-attack": 40,
+   "special-defense": 45,
+   "speed": 42
+  },
+  "final_stats": {
+   "hp": 14,
+   "attack": 16,
+   "defense": 11,
+   "special-attack": 11,
+   "special-defense": 12,
+   "speed": 12
+  }
+ },
+ "000023": {
+  "unique_id": "000023",
+  "pokedex_id": 721,
+  "name": "volcanion",
+  "shiny": false,
+  "level": 12,
+  "ivs": {
+   "hp": 7,
+   "attack": 31,
+   "defense": 9,
+   "special-attack": 26,
+   "special-defense": 13,
+   "speed": 18
+  },
+  "base_stats": {
+   "hp": 80,
+   "attack": 110,
+   "defense": 120,
+   "special-attack": 130,
+   "special-defense": 90,
+   "speed": 70
+  },
+  "final_stats": {
+   "hp": 25,
+   "attack": 35,
+   "defense": 34,
+   "special-attack": 39,
+   "special-defense": 28,
+   "speed": 23
+  }
+ },
+ "000024": {
+  "unique_id": "000024",
+  "pokedex_id": 158,
+  "name": "totodile",
+  "shiny": false,
+  "level": 10,
+  "ivs": {
+   "hp": 2,
+   "attack": 28,
+   "defense": 10,
+   "special-attack": 1,
+   "special-defense": 27,
+   "speed": 9
+  },
+  "base_stats": {
+   "hp": 50,
+   "attack": 65,
+   "defense": 64,
+   "special-attack": 44,
+   "special-defense": 48,
+   "speed": 43
+  },
+  "final_stats": {
+   "hp": 15,
+   "attack": 20,
+   "defense": 18,
+   "special-attack": 13,
+   "special-defense": 17,
+   "speed": 14
+  }
+ },
+ "000025": {
+  "unique_id": "000025",
+  "pokedex_id": 451,
+  "name": "skorupi",
+  "shiny": false,
+  "level": 15,
+  "ivs": {
+   "hp": 30,
+   "attack": 9,
+   "defense": 10,
+   "special-attack": 25,
+   "special-defense": 23,
+   "speed": 9
+  },
+  "base_stats": {
+   "hp": 40,
+   "attack": 50,
+   "defense": 90,
+   "special-attack": 30,
+   "special-defense": 55,
+   "speed": 65
+  },
+  "final_stats": {
+   "hp": 21,
+   "attack": 21,
+   "defense": 33,
+   "special-attack": 17,
+   "special-defense": 24,
+   "speed": 25
+  }
+ },
+ "000026": {
+  "unique_id": "000026",
+  "pokedex_id": 993,
+  "name": "iron-jugulis",
+  "shiny": false,
+  "level": 7,
+  "ivs": {
+   "hp": 24,
+   "attack": 14,
+   "defense": 6,
+   "special-attack": 16,
+   "special-defense": 31,
+   "speed": 25
+  },
+  "base_stats": {
+   "hp": 94,
+   "attack": 80,
+   "defense": 86,
+   "special-attack": 122,
+   "special-defense": 80,
+   "speed": 108
+  },
+  "final_stats": {
+   "hp": 19,
+   "attack": 17,
+   "defense": 17,
+   "special-attack": 23,
+   "special-defense": 18,
+   "speed": 21
+  }
  }
 }
