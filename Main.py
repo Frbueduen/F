@@ -39,7 +39,7 @@ async def start(ctx):
             data["users"][str(ctx.author.id)]["caught_pokemon"] = []            
             file.seek(0)
             json.dump(data, file, indent = 1)
-            await ctx.send(f"Your adventure has just begun. Trainer {ctx.author.name} has received 20 Pokeballs. Try `%s` to find a wild pokemon!")
+            await ctx.send(f"Your adventure has just begun. Trainer {ctx.author.name} has received 20 Pokeballs and 100 Pokedollars. Use `%s` to find a wild pokemon!")
         else:
             await ctx.send("You have already begun your adventure! Start searching for wild pokemon using `%s`")
 
@@ -184,6 +184,55 @@ async def box(ctx):
             BXembed.add_field(name=f"{name}", value="description")
 
         await ctx.send(embed=BXembed)
+
+@client.command(aliases = ["bal"])
+async def balance(ctx):
+    with open("Inventory.json", "r") as file:
+        data = json.load(file)
+    Balance = data["users"][str(ctx.author.id)]["Pokedollars"]
+    await ctx.send(f"You currently have {Balance} Pokedollars!")
+
+@client.command(aliases = ["pm", "mart"])
+async def pokemart(ctx, buy = None, item = None, amount = 1):
+    if buy in ["buy", "b"]:
+        file = open("Inventory.json", "r+")
+        data = json.load(file)
+        file.seek(0)
+        pokedollars = data["users"][str(ctx.author.id)]["Pokedollars"]
+        pokeballs = data["users"][str(ctx.author.id)]["Pokeballs"]
+        greatballs = data["users"][str(ctx.author.id)]["Greatballs"]
+        ultraballs = data["users"][str(ctx.author.id)]["Ultraballs"]
+        if item in ["pokeball","pokeballs" ,"pb" ]:
+            cost = 100 * amount
+            if cost <= pokedollars:
+                data["users"][str(ctx.author.id)]["Pokeballs"] = pokeballs + amount
+                data["users"][str(ctx.author.id)]["Pokedollars"] = pokedollars - cost
+                json.dump(data, file, indent = 1)
+                await ctx.send(f"You purchased {amount} Pokeballs for {cost}.")
+            else:
+                await ctx.send(f"You need {cost} to buy {amount} of Pokeballs. You only have {pokedollars}!")
+        elif item in ["greatball","greatballs", "gb"]:
+            cost = 250 * amount
+            if cost <= pokedollars:
+                data["users"][str(ctx.author.id)]["Greatballs"] = greatballs + amount
+                data["users"][str(ctx.author.id)]["Pokedollars"] = pokedollars - cost
+                json.dump(data, file, indent = 1)
+                await ctx.send(f"You purchased {amount} Greatballs for {cost}.")
+        elif item in ["ultraball", "ultraballs", "ub"]:
+            cost = 600 * amount
+            if cost <= pokedollars:
+                data["users"][str(ctx.author.id)]["Ultraballs"] = ultraballs + amount
+                data["users"][str(ctx.author.id)]["Pokedollars"] = pokedollars - cost
+                json.dump(data, file, indent = 1)
+                await ctx.send(f"You purchased {amount} Ultraballs for {cost}.")
+        else:
+            await ctx.send("Not added")
+    else:
+        Shopembed = discord.Embed (title="Pokemart", colour = discord.Colour.random())
+        Shopembed.add_field(name="Pokeballs", value="Cost: 100")
+        Shopembed.add_field(name="Greatballs", value="Cost: 250")
+        Shopembed.add_field(name="Ultraballs", value="Cost: 600")
+        await ctx.send(embed=Shopembed)
 
 @search.error
 async def search(ctx,error):
