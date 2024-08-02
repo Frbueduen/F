@@ -3,6 +3,11 @@ import random
 from random import randint
 import asyncio
 
+async def update_embed_title(message, new_title):
+    embed = message.embeds[0]  # Get the existing embed
+    embed.title = new_title  # Change the title
+    await message.edit(embed=embed)  # Edit the message with the updated embed
+
 def initialize_wild_pool():
     with open('all_pokemon_data.json', 'r') as file:
         pokemon_data = json.load(file)
@@ -126,7 +131,7 @@ def choose_random_wild(normal_ID_list, mythical_ID_list, legendary_ID_list):
 
     return pokemon, shiny
 
-async def search_cmd_handler(client, ctx, name):
+async def search_cmd_handler(client, ctx, name, SHembed_editor):
 
     code = 0 #this code tells if the function worked, 0 is false 1 is true (used for timeout)
     rate = None
@@ -146,6 +151,7 @@ async def search_cmd_handler(client, ctx, name):
 
     if pokeballs <= 0 and greatballs <= 0 and ultraballs <= 0 and masterballs <= 0:
         await ctx.send(f"You don't have any Pokeballs! You could only watch as {name} fled.")
+        await update_embed_title(SHembed_editor, f"{name} fled!")
         return code, catch_result, catch, rate, earnings
 
     ball_file = open("pokeballs.json","r")
@@ -153,7 +159,7 @@ async def search_cmd_handler(client, ctx, name):
 
     catch = randint(0,100)
     earnings = randint(50,150)
-    flee_chance = 10
+    flee_chance = 40
 
     while True:
         def check(msg):
@@ -163,6 +169,7 @@ async def search_cmd_handler(client, ctx, name):
             msg = await client.wait_for("message", check=check, timeout=60.0)
         except asyncio.TimeoutError:
             await ctx.send(f"You took too long to throw a ball! {name} fled!")
+            await update_embed_title(SHembed_editor, f"{name} fled!")
             return code, catch_result, catch, rate, earnings
 
         if msg.content.lower() in ["pokeball", "pb"]:
@@ -195,7 +202,7 @@ async def search_cmd_handler(client, ctx, name):
             rate = ball_data["pokeballs_normal"]["Masterball"]
 
         elif msg.content.lower() in ["run"]:
-            await ctx.send(f"You got away from {name} safely.")
+            await update_embed_title(SHembed_editor, f"Got away from {name} safely.")
             code = 1
             file.seek(0)
             json.dump(data, file, indent = 1)
@@ -206,13 +213,13 @@ async def search_cmd_handler(client, ctx, name):
 
         else:
             await ctx.send("Enter a pokeball name to use it.")
+            continue
 
         data["users"][str(ctx.author.id)]["Pokeballs"] = pokeballs
         data["users"][str(ctx.author.id)]["Greatballs"] = greatballs
         data["users"][str(ctx.author.id)]["Ultraballs"] = ultraballs
         data["users"][str(ctx.author.id)]["Masterballs"] = masterballs
         if rate >= catch:
-            print("caught")
             catch_result = True
             data["users"][str(ctx.author.id)]["Pokedollars"] = pokedollars+earnings
             json.dump(data, file, indent = 1)
@@ -220,14 +227,14 @@ async def search_cmd_handler(client, ctx, name):
             break
             #Add a flee % to decide if user gets another try
         elif random.randint(1, 100) <= flee_chance:
-            print("escaped")
-            await ctx.send(f"{name} fled!")
-            catch_result = False
+            await update_embed_title(SHembed_editor, f"{name} fled!")
+            catch_result = "ran"
             json.dump(data, file, indent = 1)
             code = 1
             break
         else:
-            await ctx.send(f"{name} broke free! Try again!")
+            random_retry_msg = random.choice([f"Argh so close! {name} broke free!", f"Not even close! {name} broke free!"]) #add more
+            await update_embed_title(SHembed_editor, random_retry_msg)
 
     file.seek(0)
     json.dump(data, file, indent=1)

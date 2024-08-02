@@ -145,38 +145,51 @@ async def search(ctx):
     
     SHembed = discord.Embed (title=f"{ctx.author.name} found a Lvl {level} {name} !",colour = colour)
     SHembed.add_field(name="Select a ball to use", value=f"Number of Pokeballs:{pb}\nNumber of Greatballs:{gb}\nNumber of Ultraballs:{ub}\nNumber of Masterballs:{mb}")
-    SHembed.set_footer(text=f"Enter a Pokeball name to use it")
+    SHembed.set_footer(text=f"{ctx.author.name}'s Battle")
     SHembed.set_image(url=sprite_url)
-    await ctx.send(embed=SHembed)
+    SHembed_editor = await ctx.send(embed=SHembed)
     
-    code, catch_result, catch, rate, earnings = await search_cmd_handler(client, ctx, name) #can consider removing catch and rate, only there for testing purposes
+    code, catch_result, catch, rate, earnings = await search_cmd_handler(client, ctx, name, SHembed_editor) #can consider removing catch and rate, only there for testing purposes
             
     if code == 0:
-        print("timed out")
+        print("Returned with code 0")
     elif catch_result == "ran":
         return
     elif catch_result:
-        await ctx.send(f"{name} was caught!\nCatch roll was {rate} and you needed only {catch} to catch\nYou earned {earnings} Pokedollars")
-        store_caught_pokemon(results, str(ctx.author.id), shiny, level)
+        await update_embed_title(SHembed_editor, f"{name} was caught! You earned {earnings} Pokedollars")
+        unique_id = store_caught_pokemon(results, str(ctx.author.id), shiny, level)
+        pokemon = search_pokemon_by_unique_id(unique_id)
+
+        RESULTembed = discord.Embed (title=f"Catch Summary",description=f"Lvl. {pokemon['level']} {name}" ,colour = colour)
+
+        RESULTembed.set_thumbnail(url=sprite_url)
+        RESULTembed.add_field(name = "Type", value = type, inline=False)
+        for iv_stat in pokemon["ivs"]:
+            RESULTembed.add_field(name = f"{iv_stat.capitalize()} IV", value = pokemon["ivs"][iv_stat], inline=True)
+        RESULTembed.set_footer(text=f"Caught by {ctx.author}  |  ID: {pokemon['unique_id']}")
+
+        await ctx.send(embed=RESULTembed)
     else:
-        await ctx.send(f"{name} escaped... It rolled a {catch} but you only had {rate}")
+        await update_embed_title(SHembed_editor, f"{name} escaped... It rolled a {catch} but you only had {rate}")
         
 @client.command()
-async def box(ctx):
+async def box(ctx, user: discord.Member = None):
+    if user == None:
+        user = ctx.author
     with open("Inventory.json", "r") as file:
         data = json.load(file)
 
-        if str(ctx.author.id) not in data["users"]:
+        if str(user.id) not in data["users"]:
             await ctx.send("You have not begun your adventure! Start by using the `%start` command.")
             return
 
-        elif data["users"][str(ctx.author.id)]["caught_pokemon"] == []:
+        elif data["users"][str(user.id)]["caught_pokemon"] == []:
             await ctx.send("You have not caught any pokemon! Try using the `%s` command")
             return
         
-        caught_id_list = data["users"][str(ctx.author.id)]["caught_pokemon"]
+        caught_id_list = data["users"][str(user.id)]["caught_pokemon"]
 
-        BXembed = discord.Embed (title=f"{ctx.author.name}'s Pokemon Box") #add color idk what
+        BXembed = discord.Embed (title=f"{user.name}'s Pokemon Box") #add color idk what
         
         for pokemon_id in caught_id_list:
             pokemon = search_pokemon_by_unique_id(str(pokemon_id))

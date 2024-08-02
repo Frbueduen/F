@@ -1579,5 +1579,811 @@
    "special-defense": 35,
    "speed": 27
   }
+ },
+ "000052": {
+  "unique_id": "000052",
+  "pokedex_id": 699,
+  "name": "aurorus",
+  "shiny": false,
+  "level": 15,
+  "ivs": {
+   "hp": 26,
+   "attack": 31,
+   "defense": 9,
+   "special-attack": 1,
+   "special-defense": 6,
+   "speed": 20
+  },
+  "base_stats": {
+   "hp": 123,
+   "attack": 77,
+   "defense": 72,
+   "special-attack": 99,
+   "special-defense": 92,
+   "speed": 58
+  },
+  "final_stats": {
+   "hp": 45,
+   "attack": 32,
+   "defense": 27,
+   "special-attack": 34,
+   "special-defense": 33,
+   "speed": 25
+  }
+ },
+ "000053": {
+  "unique_id": "000053",
+  "pokedex_id": 648,
+  "name": "meloetta-aria",
+  "shiny": true,
+  "level": 10,
+  "ivs": {
+   "hp": 2,
+   "attack": 1,
+   "defense": 22,
+   "special-attack": 27,
+   "special-defense": 4,
+   "speed": 20
+  },
+  "base_stats": {
+   "hp": 100,
+   "attack": 77,
+   "defense": 77,
+   "special-attack": 128,
+   "special-defense": 128,
+   "speed": 90
+  },
+  "final_stats": {
+   "hp": 25,
+   "attack": 20,
+   "defense": 22,
+   "special-attack": 33,
+   "special-defense": 31,
+   "speed": 25
+  }
+ },
+ "000054": {
+  "unique_id": "000054",
+  "pokedex_id": 943,
+  "name": "mabosstiff",
+  "shiny": false,
+  "level": 20,
+  "ivs": {
+   "hp": 25,
+   "attack": 16,
+   "defense": 11,
+   "special-attack": 22,
+   "special-defense": 15,
+   "speed": 23
+  },
+  "base_stats": {
+   "hp": 80,
+   "attack": 120,
+   "defense": 90,
+   "special-attack": 60,
+   "special-defense": 70,
+   "speed": 85
+  },
+  "final_stats": {
+   "hp": 42,
+   "attack": 56,
+   "defense": 43,
+   "special-attack": 33,
+   "special-defense": 36,
+   "speed": 43
+  }
+ },
+ "000055": {
+  "unique_id": "000055",
+  "pokedex_id": 831,
+  "name": "wooloo",
+  "shiny": false,
+  "level": 17,
+  "ivs": {
+   "hp": 9,
+   "attack": 30,
+   "defense": 30,
+   "special-attack": 6,
+   "special-defense": 29,
+   "speed": 19
+  },
+  "base_stats": {
+   "hp": 42,
+   "attack": 40,
+   "defense": 55,
+   "special-attack": 40,
+   "special-defense": 45,
+   "speed": 48
+  },
+  "final_stats": {
+   "hp": 20,
+   "attack": 23,
+   "defense": 28,
+   "special-attack": 19,
+   "special-defense": 25,
+   "speed": 24
+  }
+ },
+ "000056": {
+  "unique_id": "000056",
+  "pokedex_id": 493,
+  "name": "arceus",
+  "shiny": false,
+  "level": 6,
+  "ivs": {
+   "hp": 25,
+   "attack": 13,
+   "defense": 26,
+   "special-attack": 24,
+   "special-defense": 13,
+   "speed": 11
+  },
+  "base_stats": {
+   "hp": 120,
+   "attack": 120,
+   "defense": 120,
+   "special-attack": 120,
+   "special-defense": 120,
+   "speed": 120
+  },
+  "final_stats": {
+   "hp": 20,
+   "attack": 20,
+   "defense": 20,
+   "special-attack": 20,
+   "special-defense": 20,
+   "speed": 20
+  }
+ },
+ "000057": {
+  "unique_id": "000057",
+  "pokedex_id": 493,
+  "name": "arceus",
+  "shiny": false,
+  "level": 11,
+  "ivs": {
+   "hp": 3,
+   "attack": 12,
+   "defense": 16,
+   "special-attack": 27,
+   "special-defense": 14,
+   "speed": 6
+  },
+  "base_stats": {
+   "hp": 120,
+   "attack": 120,
+   "defense": 120,
+   "special-attack": 120,
+   "special-defense": 120,
+   "speed": 120
+  },
+  "final_stats": {
+   "hp": 31,
+   "attack": 32,
+   "defense": 33,
+   "special-attack": 34,
+   "special-defense": 32,
+   "speed": 32
+  }
+ },
+ "000058": {
+  "unique_id": "000058",
+  "pokedex_id": 58,
+  "name": "growlithe",
+  "shiny": false,
+  "level": 18,
+  "ivs": {
+   "hp": 14,
+   "attack": 8,
+   "defense": 17,
+   "special-attack": 20,
+   "special-defense": 20,
+   "speed": 19
+  },
+  "base_stats": {
+   "hp": 55,
+   "attack": 70,
+   "defense": 45,
+   "special-attack": 70,
+   "special-defense": 50,
+   "speed": 60
+  },
+  "final_stats": {
+   "hp": 27,
+   "attack": 31,
+   "defense": 24,
+   "special-attack": 33,
+   "special-defense": 26,
+   "speed": 30
+  }
+ },
+ "000059": {
+  "unique_id": "000059",
+  "pokedex_id": 426,
+  "name": "drifblim",
+  "shiny": false,
+  "level": 7,
+  "ivs": {
+   "hp": 13,
+   "attack": 15,
+   "defense": 17,
+   "special-attack": 28,
+   "special-defense": 16,
+   "speed": 29
+  },
+  "base_stats": {
+   "hp": 150,
+   "attack": 80,
+   "defense": 44,
+   "special-attack": 90,
+   "special-defense": 54,
+   "speed": 80
+  },
+  "final_stats": {
+   "hp": 26,
+   "attack": 17,
+   "defense": 12,
+   "special-attack": 19,
+   "special-defense": 13,
+   "speed": 18
+  }
+ },
+ "000060": {
+  "unique_id": "000060",
+  "pokedex_id": 386,
+  "name": "deoxys-normal",
+  "shiny": false,
+  "level": 9,
+  "ivs": {
+   "hp": 8,
+   "attack": 15,
+   "defense": 0,
+   "special-attack": 12,
+   "special-defense": 9,
+   "speed": 3
+  },
+  "base_stats": {
+   "hp": 50,
+   "attack": 150,
+   "defense": 50,
+   "special-attack": 150,
+   "special-defense": 50,
+   "speed": 150
+  },
+  "final_stats": {
+   "hp": 14,
+   "attack": 33,
+   "defense": 14,
+   "special-attack": 33,
+   "special-defense": 14,
+   "speed": 32
+  }
+ },
+ "000061": {
+  "unique_id": "000061",
+  "pokedex_id": 465,
+  "name": "tangrowth",
+  "shiny": false,
+  "level": 9,
+  "ivs": {
+   "hp": 23,
+   "attack": 3,
+   "defense": 6,
+   "special-attack": 21,
+   "special-defense": 29,
+   "speed": 27
+  },
+  "base_stats": {
+   "hp": 100,
+   "attack": 100,
+   "defense": 125,
+   "special-attack": 110,
+   "special-defense": 50,
+   "speed": 50
+  },
+  "final_stats": {
+   "hp": 25,
+   "attack": 23,
+   "defense": 28,
+   "special-attack": 26,
+   "special-defense": 16,
+   "speed": 16
+  }
+ },
+ "000062": {
+  "unique_id": "000062",
+  "pokedex_id": 832,
+  "name": "dubwool",
+  "shiny": false,
+  "level": 7,
+  "ivs": {
+   "hp": 29,
+   "attack": 19,
+   "defense": 14,
+   "special-attack": 9,
+   "special-defense": 28,
+   "speed": 31
+  },
+  "base_stats": {
+   "hp": 72,
+   "attack": 80,
+   "defense": 100,
+   "special-attack": 60,
+   "special-defense": 90,
+   "speed": 88
+  },
+  "final_stats": {
+   "hp": 17,
+   "attack": 17,
+   "defense": 19,
+   "special-attack": 14,
+   "special-defense": 19,
+   "speed": 19
+  }
+ },
+ "000063": {
+  "unique_id": "000063",
+  "pokedex_id": 538,
+  "name": "throh",
+  "shiny": false,
+  "level": 19,
+  "ivs": {
+   "hp": 18,
+   "attack": 19,
+   "defense": 6,
+   "special-attack": 0,
+   "special-defense": 0,
+   "speed": 20
+  },
+  "base_stats": {
+   "hp": 120,
+   "attack": 100,
+   "defense": 85,
+   "special-attack": 30,
+   "special-defense": 85,
+   "speed": 45
+  },
+  "final_stats": {
+   "hp": 54,
+   "attack": 46,
+   "defense": 38,
+   "special-attack": 16,
+   "special-defense": 37,
+   "speed": 25
+  }
+ },
+ "000064": {
+  "unique_id": "000064",
+  "pokedex_id": 290,
+  "name": "nincada",
+  "shiny": true,
+  "level": 6,
+  "ivs": {
+   "hp": 7,
+   "attack": 13,
+   "defense": 0,
+   "special-attack": 11,
+   "special-defense": 22,
+   "speed": 8
+  },
+  "base_stats": {
+   "hp": 31,
+   "attack": 45,
+   "defense": 90,
+   "special-attack": 30,
+   "special-defense": 30,
+   "speed": 40
+  },
+  "final_stats": {
+   "hp": 9,
+   "attack": 11,
+   "defense": 15,
+   "special-attack": 9,
+   "special-defense": 9,
+   "speed": 10
+  }
+ },
+ "000065": {
+  "unique_id": "000065",
+  "pokedex_id": 835,
+  "name": "yamper",
+  "shiny": false,
+  "level": 7,
+  "ivs": {
+   "hp": 27,
+   "attack": 25,
+   "defense": 17,
+   "special-attack": 0,
+   "special-defense": 3,
+   "speed": 1
+  },
+  "base_stats": {
+   "hp": 59,
+   "attack": 45,
+   "defense": 50,
+   "special-attack": 40,
+   "special-defense": 50,
+   "speed": 26
+  },
+  "final_stats": {
+   "hp": 15,
+   "attack": 13,
+   "defense": 13,
+   "special-attack": 10,
+   "special-defense": 12,
+   "speed": 8
+  }
+ },
+ "000066": {
+  "unique_id": "000066",
+  "pokedex_id": 778,
+  "name": "mimikyu-disguised",
+  "shiny": false,
+  "level": 20,
+  "ivs": {
+   "hp": 15,
+   "attack": 24,
+   "defense": 20,
+   "special-attack": 31,
+   "special-defense": 5,
+   "speed": 1
+  },
+  "base_stats": {
+   "hp": 55,
+   "attack": 90,
+   "defense": 80,
+   "special-attack": 50,
+   "special-defense": 105,
+   "speed": 96
+  },
+  "final_stats": {
+   "hp": 30,
+   "attack": 45,
+   "defense": 41,
+   "special-attack": 31,
+   "special-defense": 48,
+   "speed": 43
+  }
+ },
+ "000067": {
+  "unique_id": "000067",
+  "pokedex_id": 552,
+  "name": "krokorok",
+  "shiny": false,
+  "level": 5,
+  "ivs": {
+   "hp": 21,
+   "attack": 14,
+   "defense": 0,
+   "special-attack": 27,
+   "special-defense": 20,
+   "speed": 6
+  },
+  "base_stats": {
+   "hp": 60,
+   "attack": 82,
+   "defense": 45,
+   "special-attack": 45,
+   "special-defense": 45,
+   "speed": 74
+  },
+  "final_stats": {
+   "hp": 12,
+   "attack": 13,
+   "defense": 9,
+   "special-attack": 10,
+   "special-defense": 10,
+   "speed": 12
+  }
+ },
+ "000068": {
+  "unique_id": "000068",
+  "pokedex_id": 929,
+  "name": "dolliv",
+  "shiny": false,
+  "level": 8,
+  "ivs": {
+   "hp": 6,
+   "attack": 5,
+   "defense": 1,
+   "special-attack": 5,
+   "special-defense": 17,
+   "speed": 0
+  },
+  "base_stats": {
+   "hp": 52,
+   "attack": 53,
+   "defense": 60,
+   "special-attack": 78,
+   "special-defense": 78,
+   "speed": 33
+  },
+  "final_stats": {
+   "hp": 13,
+   "attack": 13,
+   "defense": 14,
+   "special-attack": 17,
+   "special-defense": 18,
+   "speed": 10
+  }
+ },
+ "000069": {
+  "unique_id": "000069",
+  "pokedex_id": 172,
+  "name": "pichu",
+  "shiny": false,
+  "level": 12,
+  "ivs": {
+   "hp": 31,
+   "attack": 15,
+   "defense": 21,
+   "special-attack": 10,
+   "special-defense": 27,
+   "speed": 31
+  },
+  "base_stats": {
+   "hp": 20,
+   "attack": 40,
+   "defense": 15,
+   "special-attack": 35,
+   "special-defense": 35,
+   "speed": 60
+  },
+  "final_stats": {
+   "hp": 13,
+   "attack": 16,
+   "defense": 11,
+   "special-attack": 14,
+   "special-defense": 16,
+   "speed": 23
+  }
+ },
+ "000070": {
+  "unique_id": "000070",
+  "pokedex_id": 340,
+  "name": "whiscash",
+  "shiny": false,
+  "level": 7,
+  "ivs": {
+   "hp": 23,
+   "attack": 2,
+   "defense": 9,
+   "special-attack": 4,
+   "special-defense": 12,
+   "speed": 1
+  },
+  "base_stats": {
+   "hp": 110,
+   "attack": 78,
+   "defense": 73,
+   "special-attack": 76,
+   "special-defense": 71,
+   "speed": 60
+  },
+  "final_stats": {
+   "hp": 22,
+   "attack": 16,
+   "defense": 15,
+   "special-attack": 15,
+   "special-defense": 15,
+   "speed": 13
+  }
+ },
+ "000071": {
+  "unique_id": "000071",
+  "pokedex_id": 874,
+  "name": "stonjourner",
+  "shiny": false,
+  "level": 16,
+  "ivs": {
+   "hp": 29,
+   "attack": 20,
+   "defense": 26,
+   "special-attack": 15,
+   "special-defense": 13,
+   "speed": 10
+  },
+  "base_stats": {
+   "hp": 100,
+   "attack": 125,
+   "defense": 135,
+   "special-attack": 20,
+   "special-defense": 20,
+   "speed": 70
+  },
+  "final_stats": {
+   "hp": 41,
+   "attack": 48,
+   "defense": 52,
+   "special-attack": 13,
+   "special-defense": 13,
+   "speed": 29
+  }
+ },
+ "000072": {
+  "unique_id": "000072",
+  "pokedex_id": 275,
+  "name": "shiftry",
+  "shiny": false,
+  "level": 19,
+  "ivs": {
+   "hp": 26,
+   "attack": 7,
+   "defense": 27,
+   "special-attack": 22,
+   "special-defense": 18,
+   "speed": 19
+  },
+  "base_stats": {
+   "hp": 90,
+   "attack": 100,
+   "defense": 60,
+   "special-attack": 90,
+   "special-defense": 60,
+   "speed": 80
+  },
+  "final_stats": {
+   "hp": 44,
+   "attack": 44,
+   "defense": 32,
+   "special-attack": 43,
+   "special-defense": 31,
+   "speed": 39
+  }
+ },
+ "000073": {
+  "unique_id": "000073",
+  "pokedex_id": 659,
+  "name": "bunnelby",
+  "shiny": false,
+  "level": 8,
+  "ivs": {
+   "hp": 23,
+   "attack": 16,
+   "defense": 18,
+   "special-attack": 13,
+   "special-defense": 13,
+   "speed": 28
+  },
+  "base_stats": {
+   "hp": 38,
+   "attack": 36,
+   "defense": 38,
+   "special-attack": 32,
+   "special-defense": 36,
+   "speed": 57
+  },
+  "final_stats": {
+   "hp": 12,
+   "attack": 12,
+   "defense": 12,
+   "special-attack": 11,
+   "special-defense": 11,
+   "speed": 16
+  }
+ },
+ "000074": {
+  "unique_id": "000074",
+  "pokedex_id": 230,
+  "name": "kingdra",
+  "shiny": true,
+  "level": 15,
+  "ivs": {
+   "hp": 29,
+   "attack": 11,
+   "defense": 31,
+   "special-attack": 25,
+   "special-defense": 6,
+   "speed": 17
+  },
+  "base_stats": {
+   "hp": 75,
+   "attack": 95,
+   "defense": 95,
+   "special-attack": 95,
+   "special-defense": 95,
+   "speed": 85
+  },
+  "final_stats": {
+   "hp": 31,
+   "attack": 35,
+   "defense": 38,
+   "special-attack": 37,
+   "special-defense": 34,
+   "speed": 33
+  }
+ },
+ "000075": {
+  "unique_id": "000075",
+  "pokedex_id": 963,
+  "name": "finizen",
+  "shiny": false,
+  "level": 3,
+  "ivs": {
+   "hp": 16,
+   "attack": 9,
+   "defense": 19,
+   "special-attack": 12,
+   "special-defense": 10,
+   "speed": 28
+  },
+  "base_stats": {
+   "hp": 70,
+   "attack": 45,
+   "defense": 40,
+   "special-attack": 45,
+   "special-defense": 40,
+   "speed": 75
+  },
+  "final_stats": {
+   "hp": 9,
+   "attack": 7,
+   "defense": 7,
+   "special-attack": 8,
+   "special-defense": 7,
+   "speed": 10
+  }
+ },
+ "000076": {
+  "unique_id": "000076",
+  "pokedex_id": 508,
+  "name": "stoutland",
+  "shiny": false,
+  "level": 6,
+  "ivs": {
+   "hp": 4,
+   "attack": 16,
+   "defense": 25,
+   "special-attack": 8,
+   "special-defense": 26,
+   "speed": 20
+  },
+  "base_stats": {
+   "hp": 85,
+   "attack": 110,
+   "defense": 90,
+   "special-attack": 45,
+   "special-defense": 90,
+   "speed": 80
+  },
+  "final_stats": {
+   "hp": 15,
+   "attack": 19,
+   "defense": 17,
+   "special-attack": 10,
+   "special-defense": 17,
+   "speed": 15
+  }
+ },
+ "000077": {
+  "unique_id": "000077",
+  "pokedex_id": 876,
+  "name": "indeedee-male",
+  "shiny": false,
+  "level": 17,
+  "ivs": {
+   "hp": 10,
+   "attack": 22,
+   "defense": 22,
+   "special-attack": 12,
+   "special-defense": 18,
+   "speed": 13
+  },
+  "base_stats": {
+   "hp": 60,
+   "attack": 65,
+   "defense": 55,
+   "special-attack": 105,
+   "special-defense": 95,
+   "speed": 95
+  },
+  "final_stats": {
+   "hp": 27,
+   "attack": 30,
+   "defense": 27,
+   "special-attack": 42,
+   "special-defense": 40,
+   "speed": 39
+  }
  }
 }

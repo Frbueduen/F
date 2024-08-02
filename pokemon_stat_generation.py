@@ -76,3 +76,5 @@ def store_caught_pokemon(pokemon_data, user_id, shiny, level):
         file.seek(0)
         json.dump(data, file, indent=1)
         file.truncate()
+
+    return unique_id
