@@ -2385,5 +2385,36 @@
    "special-defense": 40,
    "speed": 39
   }
+ },
+ "000078": {
+  "unique_id": "000078",
+  "pokedex_id": 492,
+  "name": "shaymin-land",
+  "shiny": false,
+  "level": 8,
+  "ivs": {
+   "hp": 7,
+   "attack": 10,
+   "defense": 6,
+   "special-attack": 9,
+   "special-defense": 20,
+   "speed": 2
+  },
+  "base_stats": {
+   "hp": 100,
+   "attack": 100,
+   "defense": 100,
+   "special-attack": 100,
+   "special-defense": 100,
+   "speed": 100
+  },
+  "final_stats": {
+   "hp": 21,
+   "attack": 21,
+   "defense": 21,
+   "special-attack": 21,
+   "special-defense": 22,
+   "speed": 21
+  }
  }
 }
