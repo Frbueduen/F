@@ -2416,5 +2416,36 @@
    "special-defense": 22,
    "speed": 21
   }
+ },
+ "000079": {
+  "unique_id": "000079",
+  "pokedex_id": 716,
+  "name": "xerneas",
+  "shiny": false,
+  "level": 12,
+  "ivs": {
+   "hp": 5,
+   "attack": 8,
+   "defense": 3,
+   "special-attack": 22,
+   "special-defense": 24,
+   "speed": 18
+  },
+  "base_stats": {
+   "hp": 126,
+   "attack": 131,
+   "defense": 95,
+   "special-attack": 131,
+   "special-defense": 98,
+   "speed": 99
+  },
+  "final_stats": {
+   "hp": 35,
+   "attack": 37,
+   "defense": 28,
+   "special-attack": 39,
+   "special-defense": 31,
+   "speed": 30
+  }
  }
 }
